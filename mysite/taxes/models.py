@@ -7,7 +7,8 @@ class Client(models.Model):
     taxYear = models.CharField(max_length=100)
     grossSalary = models.IntegerField()
     tax = models.IntegerField(default=0)
-    takeHomePay = models.IntegerField(default=0)
+    
+
     def setFirstName(self,firstName):
         self.firstName=firstName
     def setLastName(self,lastName):
@@ -20,6 +21,7 @@ class Client(models.Model):
         self.grossSalary=grossSalary
     def __str__(self):
         return self.email
+    
     def calculateTax(self):
         
         tempSalary=int(self.grossSalary)

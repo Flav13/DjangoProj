@@ -1,3 +1,118 @@
 from django.test import TestCase
+from .models import Client
 
-# Create your tests here.
+class ClientTaxTests(TestCase):
+
+    def test_midRangeTax(self):
+        
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2014/2015")
+        client.setGrossSalary(80000)
+        client.calculateTax()
+        self.assertEqual(client.tax,21627)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2015/2016")
+        client.setGrossSalary(80000)
+        client.calculateTax()
+        self.assertEqual(client.tax,21403)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2015/2016")
+        client.setGrossSalary(150000)
+        client.calculateTax()
+        self.assertEqual(client.tax,49403)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2014/2015")
+        client.setGrossSalary(150000)
+        client.calculateTax()
+        self.assertEqual(client.tax,49627)
+        
+    def test_highEndTax(self):
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2014/2015")
+        client.setGrossSalary(151000)
+        client.calculateTax()
+        self.assertEqual(client.tax,50077)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2015/2016")
+        client.setGrossSalary(151000)
+        client.calculateTax()
+        self.assertEqual(client.tax,49853)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2014/2015")
+        client.setGrossSalary(150001)
+        client.calculateTax()
+        self.assertEqual(client.tax,49627.45)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2015/2016")
+        client.setGrossSalary(150001)
+        client.calculateTax()
+        self.assertEqual(client.tax,49403.45)
+
+    def test_lowEndTax(self):
+     
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2014/2015")
+        client.setGrossSalary(10000)
+        client.calculateTax()
+        self.assertEqual(client.tax,0)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2015/2016")
+        client.setGrossSalary(10600)
+        client.calculateTax()
+        self.assertEqual(client.tax,0)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2014/2015")
+        client.setGrossSalary(41865)
+        client.calculateTax()
+        self.assertEqual(client.tax,6373)
+
+        client = Client()
+        client.setFirstName("John")
+        client.setLastName("Doe")
+        client.setEmail("pie@gmail.com")
+        client.setTaxYear("2015/2016")
+        client.setGrossSalary(42385)
+        client.calculateTax()
+        self.assertEqual(client.tax,6357)
