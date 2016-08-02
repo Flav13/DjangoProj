@@ -1,0 +1,19 @@
+<h1>Enter Client Details</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'taxes:calculate' %}" method="post">
+{% csrf_token %}
+First Name:<br>
+<input type="text" name="firstName"><br>
+Last Name:<br>
+<input type="text" name="lastName"><br>
+E-Mail address:<br>
+<input type="text" name="email"><br>
+Tax Year:<br>
+<select name="taxYear">
+  <option value="2014/2015">2014/2015</option>
+  <option value="2015/2016">2015/2016</option>
+</select><br>
+Gross Salary:<br>
+<input type="text" name="grossSalary"><br><br>
+<input type="submit" value="Submit">
+</form>
