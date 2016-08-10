@@ -1,0 +1,12 @@
+<form action="{% url 'booking:user-list' %}" method="POST">
+{% csrf_token %}
+  First name:<br>
+  <input type="text" name="firstName"><br>
+  Last name:<br>
+  <input type="text" name="lastName"><br>
+   E-Mail address:<br>
+  <input type="text" name="email"><br>
+   Password:<br>
+  <input type="password" name="password">
+ <input type="submit" value="Add User" />
+</form>

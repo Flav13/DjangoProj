@@ -1,0 +1,15 @@
+<form action="{% url 'booking:booking-list' %}" method ="POST">
+{% csrf_token %}
+Start Date:
+<input type="date" name="created"><br>
+
+Choose Room:
+<select name="room">
+{% for choice in room %}  
+<option value="{{ choice }}">{{choice.roomType}} ,{{choice.price}}</option>
+{% endfor %}
+</select><br>
+Choose End Date:
+<input type="date" name="endDate"><br>
+<input type="submit" value="Create Booking" />
+</form>

@@ -1,0 +1,8 @@
+<form action="{% url 'booking:authenticateUser' %}" method="POST">
+{% csrf_token %}
+E-Mail address:<br>
+<input type="text" name="email"><br>
+Password:<br>
+<input type="password" name="password"><br>
+<input type="submit" value="Authenticate User" />
+</form>
