@@ -1,0 +1,14 @@
+<form action="contacts">
+    <input type="submit" value="View Address Book" />
+</form>
+
+
+Choose Contact:
+<form action="{% url 'addressBook:contact-instance' %}" method ="GET">
+<select name="pie">
+{% for choice in contacts %}  
+<option value="{{ choice.id }}">{{choice.given_name}} ,{{choice.family_name}},{{choice.id}}</option>
+{% endfor %}
+</select><br>
+<input type="submit" value="Get Contact" />
+</form>

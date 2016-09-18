@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'addressBook.apps.AddressbookConfig',
     'booking.apps.BookingConfig',
     'taxes.apps.TaxesConfig',
     'rest_framework',
